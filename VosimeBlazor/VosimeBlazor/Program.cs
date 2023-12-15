@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using VosimeBlazor.Client.Pages;
 using VosimeBlazor.Components;
 using VosimeBlazor.Data;
 using VosimeBlazor.Services;
