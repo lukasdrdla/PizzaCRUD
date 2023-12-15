@@ -1,0 +1,57 @@
+﻿@page "/pizzalist"
+@inject IPizzaService PizzaService
+@attribute [StreamRendering]
+
+
+
+<h3>PizzaList</h3>
+
+@if (Pizzas != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>PizzaId</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pizza in Pizzas)
+            {
+                <tr>
+                    <td>@pizza.Id</td>
+                    <td>@pizza.Name</td>
+                    <td>@pizza.Description</td>
+                    <td>@pizza.Price$</td>
+                    <td><EditPizzaButton PizzaId="@pizza.Id" />
+                        <DeletePizzaButton PizzaId="@pizza.Id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+else
+{
+    <p><em>Loading...</em></p>
+}
+
+<CreatePizzaButton />
+
+
+@code {
+
+    private List<Pizza>? Pizzas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Pizzas = await PizzaService.GetPizzas();
+    }
+
+
+
+}

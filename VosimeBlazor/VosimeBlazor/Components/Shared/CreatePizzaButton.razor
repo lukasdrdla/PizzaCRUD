@@ -1,0 +1,12 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<button class="btn btn-primary" @onclick="CreatePizza">Create Pizza</button>
+
+@code {
+
+    void CreatePizza()
+    {
+        NavigationManager.NavigateTo("/createpizza");
+    }
+}

@@ -1,0 +1,28 @@
+﻿@page "/createpizza"
+@inject NavigationManager NavigationManager
+@inject IPizzaService PizzaService
+<h3>CreatePizza</h3>
+
+<EditForm Model="pizza" OnSubmit="HandleSubmit" FormName="CreatePizza">
+    <label for="name">Name</label>
+    <InputText id="name" class="form-control" @bind-Value="pizza.Name" />
+    <label for="description">Description</label>
+    <InputText id="description" class="form-control" @bind-Value="pizza.Description" />
+    <label for="price">Price</label>
+    <InputNumber id="price" class="form-control" @bind-Value="pizza.Price" />
+    <button class="btn btn-primary" type="submit">Create Pizza</button>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private Pizza pizza { get; set; } = new Pizza();
+
+    private async Task HandleSubmit()
+    {
+        await PizzaService.CreatePizza(pizza);
+        NavigationManager.NavigateTo("/pizzalist");
+        
+    }
+    
+
+}

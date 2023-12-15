@@ -1,0 +1,19 @@
+﻿@inject NavigationManager NavigationManager
+@inject IPizzaService PizzaService
+@rendermode InteractiveServer
+
+
+<button class="btn btn-danger" @onclick="DeletePizza">Delete Pizza</button>
+
+@code {
+
+    [Parameter]
+    public int PizzaId { get; set; }
+
+    async Task DeletePizza()
+    {
+        await PizzaService.DeletePizza(PizzaId);
+        // Optional: Redirect to a different page or perform other actions after deletion
+        NavigationManager.NavigateTo("/pizzalist");
+    }
+}

@@ -1,0 +1,13 @@
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<button class="btn btn-success" @onclick="EditPizza">Edit Pizza</button>
+
+@code {
+    [Parameter]
+    public int PizzaId { get; set; }
+    void EditPizza()
+    {
+        NavigationManager.NavigateTo($"/editpizza/{PizzaId}");
+    }
+}
